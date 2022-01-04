@@ -5,10 +5,20 @@ const con = mysql.createConnection({
   password : process.env.RDS_PASSWORD,
   port     : process.env.RDS_PORT
 });
+
 exports.handler = async (event) => {
-  con.query("SELECT * FROM ticketsystem.ticket", function (err, result) {
-    if (err) throw err;
-    console.log("result: ", result);
-  });
-  return "Done."
+  await update_db();
+  return "Done...";
 };
+
+function update_db() {
+  return new Promise(async (resolve, reject) => {
+    con.query("SELECT * FROM ticketsystem.ticket", function (err, result) {
+      if (err) throw err;
+      console.log("result: ", result);
+      resolve(result);
+    });    
+  }) 
+}
+
+
