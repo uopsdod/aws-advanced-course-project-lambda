@@ -40,7 +40,6 @@ function update_db(boughtTicketId, agendaProvider) {
       console.log("bank 15%, host 45%, subhost 25%, platform 15%");
     }
     
-    let ticket_id = '1';
     let sql = `UPDATE ticketsystem.ticket SET ticket_status = 'done' WHERE ticket_id = '${boughtTicketId}';`
     console.log("sql: ", sql);
     con.query(sql, function (err, result) {
